@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TaskManager.Presenters;
+using TaskManager.Models;
 
 namespace TaskManager
 {
@@ -16,7 +18,13 @@ namespace TaskManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new MainView());
+
+            var view = new MainView();
+            var model = new MainModel();
+            var presenter = new MainPresenter() { View = view , Model = model};
+            view.Presenter = presenter;
+            presenter.Run();
         }
     }
 }
